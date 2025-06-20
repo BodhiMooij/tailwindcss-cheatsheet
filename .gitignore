@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.pnp.js
 
 # testing
 /coverage
@@ -21,8 +22,8 @@
 /build
 
 # misc
-.idea/
 .DS_Store
+.idea/
 *.pem
 
 # debug
@@ -33,6 +34,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+
+# local env files
+.env*.local
+.env
 
 # vercel
 .vercel
