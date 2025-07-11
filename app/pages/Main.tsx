@@ -40,7 +40,8 @@ const Home = () => {
                         {profileData.map(({username, role, name, email}: iProfile) => {
                             return (
                                 <div key={username}>
-                                    <ProfileCard name={name} role={role} email={email} username={username}/>
+                                    <ProfileCard name={name} role={role} email={email}
+                                                 username={username}/>
                                 </div>
                             )
                         })}

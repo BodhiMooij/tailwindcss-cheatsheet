@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import Image from "next/image";
-import Main from "@/app/pages/Main"
+import Main from "@app/pages/Main"
 
 export default function Home() {
     return (
@@ -21,8 +22,9 @@ export default function Home() {
             </header>
 
             <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-
-                <Main/>
+                <Suspense>
+                    <Main/>
+                </Suspense>
 
 
                 {/*<Image*/}
