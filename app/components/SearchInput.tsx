@@ -7,31 +7,33 @@ interface iDefault {
     defaultValue: string | null
 }
 
-export const SearchInput = ({defaultValue}: iDefault) => {
-    const router = useRouter()
-    const [inputValue, setValue] = useState(defaultValue)
+export const SearchInput = ({ defaultValue }: iDefault) => {
+    const router = useRouter();
+    const [inputValue, setValue] = useState(defaultValue);
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         setValue(inputValue);
-    }
-    const handleSearch = () => {
-        if (inputValue) return router.push(`/?q=${inputValue}`);
-        if (!inputValue) return router.push("/")
-    }
-    const handleKeyPress = () => {
-        handleSearch();
+        handleSearch(inputValue);
+    };
+
+    const handleSearch = (value: string | null) => {
+        if (value) return router.push(`/?q=${value}`);
+        if (!value) return router.push("/");
     };
 
     return (
         <div
-            className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-5 p-1 rounded-[15px]">
+            className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-2 py-2 px-4 rounded-lg">
             <label htmlFor="inputId">Icon</label>
-            <input type="text"
-                   id="inputId"
-                   placeholder="Enter your keywords"
-                   value={inputValue ?? ""} onChange={handleChange}
-                   onKeyDown={handleKeyPress}
-                   className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3"/>
+            <input
+                type="text"
+                id="inputId"
+                placeholder="Enter your keywords"
+                value={inputValue ?? ""}
+                onChange={handleChange}
+                className="bg-[transparent] outline-none border-none w-full"
+            />
         </div>
-    )
-}
+    );
+};

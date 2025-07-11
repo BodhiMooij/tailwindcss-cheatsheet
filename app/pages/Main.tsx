@@ -1,24 +1,22 @@
 'use client'
 import { useState, useEffect } from "react"
 import { ProfileCard } from "@/app/components/ProfileCard"
-import { SearchInput } from "@/app/components/SearchInput"
-import { data, iProfile } from "@/data"
+import { data, iSection } from "@/data"
 import { useSearchParams } from 'next/navigation'
 
 const Home = () => {
-    const [profileData, setProfileData] = useState<iProfile[]>([])
+    const [profileData, setProfileData] = useState<iSection[]>([])
     const searchParams = useSearchParams()
     const searchQuery = searchParams && searchParams.get("q");
+    const totalUser = profileData.length;
 
     useEffect(() => {
         const handleSearch = () => {
-            const findUser = data.filter((user) => {
+            const findUser = data.filter((item) => {
                 if (searchQuery) {
                     return (
-                        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        user.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+                        item.section.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        item.items.includes(searchQuery.toLowerCase())
                     );
                 } else {
                     return true;
@@ -28,20 +26,18 @@ const Home = () => {
         };
         handleSearch();
     }, [searchQuery]); // Only rerun the effect if searchQuery changes
-    const totalUser = profileData.length;
 
     return (
-        <section className="">
-            <p className="mb-10 ">Showing {totalUser} {totalUser > 1 ? "Users" : "User"}</p>
-            <SearchInput defaultValue={searchQuery}/>
+        <section className="w-full">
+            <p className="mb-10">Showing {totalUser} {totalUser > 1 ? "Users" : "User"}</p>
+
             <div className="mt-8">
                 {totalUser === 0 ? <p>No result returned</p> : (
-                    <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-5">
-                        {profileData.map(({username, role, name, email}: iProfile) => {
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        {profileData.map(({section, items}: iSection) => {
                             return (
-                                <div key={username}>
-                                    <ProfileCard name={name} role={role} email={email}
-                                                 username={username}/>
+                                <div className={'rounded-lg border border-solid'} key={section}>
+                                    <ProfileCard section={section} items={items}/>
                                 </div>
                             )
                         })}

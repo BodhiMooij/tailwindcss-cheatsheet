@@ -1,98 +1,54 @@
-export interface iProfile {
-    name: string;
-    email: string;
-    username: string;
-    role: "Frontend Developer" | "Backend Developer" | "Fullstack Developer";
+export interface iSection {
+    section: string;
+    items: string[];
 }
 
-export const data: iProfile[] = [];
-
-const RandomNames = [
-    "Spacing",
-    "Black",
-    "Charlie",
-    "David",
-    "Eve",
-    "Frank",
-    "Grace",
-    "Henry",
-    "Ivy",
-    "Jack",
-    "Kate",
-    "Liam",
-    "Mia",
-    "Noah",
-    "Olivia",
-    "Peter",
-    "Quinn",
-    "Rose",
-    "Sam",
-    "Tina",
-    "Uma",
-    "Victor",
-    "Wendy",
-    "Xander",
-    "Yara",
-    "Zane",
-    "Abigail",
-    "Benjamin",
-    "Chloe",
-    "Daniel",
-    "Emily",
-    "Fiona",
-    "George",
-    "Hannah",
-    "Isaac",
-    "Julia",
-    "Kevin",
-    "Lily",
-    "Mason",
-    "Nora",
-    "Oscar",
-    "Penelope",
-    "Quentin",
-    "Rachel",
-    "Simon",
-    "Tiffany",
-    "Ulysses",
-    "Violet",
-    "William",
-    "Xavier",
-    "Yasmine",
-    "Zoey",
-    "Stephen",
-    "Gerrard",
-    "Adewale",
-    "Chukwudi",
-    "Fatima",
-    "Mohammed",
-    "Sofia",
-    "Rajesh",
-    "Anjali",
-    "Carlos",
-    "Lucia",
-    "Miguel",
-    "Isabella",
-    "Javier",
-    "Camila",
-    "Diego",
-    "Santiago",
-    "Elena",
+export const sections: iSection[] = [
+    {
+        section: "Spacing",
+        items: [
+            "p-4", "m-4", "px-2", "py-2", "mx-auto", "my-0"
+        ],
+    },
+    {
+        section: "Breakpoints",
+        items: [
+            "sm:", "md:", "lg:", "xl:", "2xl:"
+        ],
+    },
+    {
+        section: "Pseudo Classes",
+        items: [
+            "hover", "focus", "focus-within", "focus-visible", "active", "visited", "target",
+            "first", "last", "only", "odd", "even", "first-of-type", "last-of-type", "only-of-type",
+            "empty", "disabled", "enabled", "checked", "indeterminate", "default", "required",
+            "valid", "invalid", "in-range", "out-of-range", "placeholder-shown", "autofill",
+            "read-only", "before", "after", "first-letter", "first-line", "marker", "selection",
+            "file", "backdrop", "placeholder", "supports-[…]", "data-[…]", "rtl", "ltr", "open"
+        ],
+    },
+    {
+        section: "Colors",
+        items: [
+            "text-red-500", "bg-blue-300", "border-green-700", "hover:text-yellow-400"
+        ],
+    },
+    {
+        section: "Typography",
+        items: [
+            "font-bold", "text-lg", "leading-6", "tracking-wide", "uppercase"
+        ],
+    },
 ];
 
-for (let i = 0; i <= RandomNames.length; i++) {
-    if (RandomNames[i]) {
-        const profile: iProfile = {
-            name: RandomNames[i],
-            role:
-                i % 3 === 0
-                    ? "Backend Developer"
-                    : i % 2 === 0
-                        ? "Frontend Developer"
-                        : "Fullstack Developer",
-            email: `${RandomNames[i].toLowerCase()}@example.com`,
-            username: `user${RandomNames[i].toLowerCase()}_username`,
-        };
-        data.push(profile);
-    }
-}
+export const data: iSection[] = [];
+
+// Add sections data to the `data` array
+sections.forEach((section) => {
+    const profile: iSection = {
+        section: section.section,
+        items: section.items,
+    };
+
+    data.push(profile);
+});

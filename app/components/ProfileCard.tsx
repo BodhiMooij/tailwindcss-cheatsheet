@@ -1,14 +1,19 @@
-import { iProfile } from "@/data";
-export const ProfileCard = (props: iProfile) => {
-    const { name, email, username, role } = props;
+import { iSection } from "@/data";
+
+export const ProfileCard = (props: iSection) => {
+    const { section, items } = props;
     return (
-        <div className="profile__card rounded-[15px] border border-solid">
-            <div className=" bg-slate-300 p-3">
-                <h2 className="">Name: {name}</h2>
-                <p>Role: {role}</p>
-                <p>Email: {email}</p>
-                <p>follow @{username}</p>
+        <div className="profile__card">
+            <div className="p-3">
+                <h2 className="font-bold text-lg">Section: {section}</h2>
+                <ul className="mt-2 list-disc list-inside">
+                    {items.map((item, index) => (
+                        <li key={index} className="text-sm text-gray-100">
+                            {item}
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
-    )
-}
+    );
+};
