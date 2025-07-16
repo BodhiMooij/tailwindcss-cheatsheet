@@ -16,7 +16,10 @@ const Home = () => {
                 if (searchQuery) {
                     return (
                         item.section.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        item.items.includes(searchQuery.toLowerCase())
+                        item.items.some(({name, value}) =>
+                            name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            value.toLowerCase().includes(searchQuery.toLowerCase())
+                        )
                     );
                 } else {
                     return true;
@@ -29,21 +32,19 @@ const Home = () => {
 
     return (
         <section className="w-full">
-            <p className="mb-10">Showing {totalUser} {totalUser > 1 ? "Users" : "User"}</p>
-
-            <div className="mt-8">
-                {totalUser === 0 ? <p>No result returned</p> : (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {profileData.map(({section, items}: iSection) => {
-                            return (
-                                <div className={'rounded-lg border border-solid'} key={section}>
-                                    <ProfileCard section={section} items={items}/>
-                                </div>
-                            )
-                        })}
-                    </div>
-                )}
-            </div>
+            <p className="mb-10 text-sm font-bold">Showing {totalUser} {totalUser > 1 ? "items" : "item"}</p>
+            {totalUser === 0 ? <p>No result returned</p> : (
+                <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 w-full">
+                    {profileData.map(({section, items}: iSection) => {
+                        return (
+                            <div className='rounded-md border border-solid w-full mb-4 break-inside-avoid'
+                                 key={section}>
+                                <ProfileCard section={section} items={items}/>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
         </section>
     )
 }

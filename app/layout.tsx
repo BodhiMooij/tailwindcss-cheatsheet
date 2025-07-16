@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Tailwind CSS Cheatsheet",
+    title: "Tailwind Cheatsheet by Bodhi Mooij",
     description: "Tailwind CSS Cheatsheet by Bodhi Mooij",
 };
 

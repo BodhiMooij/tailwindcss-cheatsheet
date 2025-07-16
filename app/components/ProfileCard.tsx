@@ -2,7 +2,7 @@ import { iSection } from "@/data";
 import { useState } from "react";
 
 export const ProfileCard = (props: iSection) => {
-    const {section, items} = props;
+    const {section, items = []} = props; // Default values to an empty array
 
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -25,21 +25,17 @@ export const ProfileCard = (props: iSection) => {
                 <ul className="mt-2 list-inside">
                     {items.map((item, index) => (
                         <li key={index}
-                            className="text-sm list-none text-gray-100 flex justify-between items-center gap-2">
-                            {item.startsWith("bg-") || item.startsWith("text-") ?
-                                <span className={'flex items-center gap-2'}>
-                                    <div
-                                        className={`w-4 h-4 rounded ${item.startsWith("bg-") ? item : ""}`}
-                                        title={item}
-                                    ></div>
-                                    <span>{item}</span>
-                                </span>
-                                : <span>{item}</span>
-                            }
-
+                            className="text-sm list-none text-gray-100 flex justify-between items-center gap-2 bg-gray-800 p-1 m-1 rounded-md hover:bg-gray-700 transition-colors">
+                            <div onClick={() => copyToClipboard(item.name, index)}
+                                 className="flex items-center justify-between gap-2 w-full cursor-pointer">
+                                <div className='flex items-center gap-2'>
+                                    <span className='min-w-5'>{item.name}</span>
+                                    <span className={`bg-primary h-2 w-${item.name}`}></span>
+                                </div>
+                                <span className={'opacity-50 select-none'}>{item.value}</span>
+                            </div>
                             <span
-                                className="cursor-pointer text-blue-500"
-                                onClick={() => copyToClipboard(item, index)}
+                                className="cursor-pointer"
                             >
                                 {copiedIndex === index ? "✔️" : "📋"}
                             </span>

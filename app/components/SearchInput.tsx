@@ -24,8 +24,8 @@ export const SearchInput = ({ defaultValue }: iDefault) => {
 
     return (
         <div
-            className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-2 py-2 px-4 rounded-lg">
-            <label htmlFor="inputId">Icon</label>
+            className="search__input border-1 border-solid border-gray-500 flex flex-row items-center gap-2 py-2 px-4 rounded-md">
+            <label htmlFor="inputId">🔍</label>
             <input
                 type="text"
                 id="inputId"
